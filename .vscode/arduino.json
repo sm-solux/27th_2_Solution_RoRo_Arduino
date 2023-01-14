@@ -1,0 +1,7 @@
+{
+    "port": "COM10",
+    "board": "arduino:avr:uno",
+    "programmer": "arduino:avrispmkii",
+    "sketch": "arduinoB.ino",
+    "output": "./ArduinoOutput"
+}
