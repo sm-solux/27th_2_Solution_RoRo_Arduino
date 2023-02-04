@@ -23,3 +23,10 @@ void Lcd::printDistance(long distance) {
     lcd.print(m);
     lcd.print("cm");
 }
+
+void Lcd::printstr(String str) {
+    lcd.setCursor(0, 0);
+    lcd.printstr("                ");
+    lcd.setCursor(0, 0);
+    lcd.printstr(str.c_str());
+}
