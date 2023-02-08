@@ -1,5 +1,5 @@
 #include "Arduino.h"
-#include "ultrasonic.h"
+#include "Ultrasonic.h"
 
 Ultrasonic::Ultrasonic(int trig, int echo): trig(trig), echo(echo) {}
 

@@ -1,9 +1,9 @@
 #include <AFMotor.h>
 #include <SoftwareSerial.h>
-#include "pinNumber.h"
-#include "operationCode.h"
+#include "PinNumber.h"
+#include "OperationCode.h"
 
-AF_DCMotor motorRight(1), motorLeft(2);
+AF_DCMotor rightMotor(1), leftMotor(2);
 SoftwareSerial mySerial(PIN_RX, PIN_TX);
 
 const int maxSpeed = 250, minSpeed = 150, standardSpeed = 200;
@@ -15,10 +15,10 @@ void handleDirection(DirectionCode directionCode);
 void handleSpeed(SpeedCode speedCode);
 
 void setup() {
-    motorRight.setSpeed(currentSpeed);
-    motorLeft.setSpeed(currentSpeed);
-    motorRight.run(RELEASE);
-    motorLeft.run(RELEASE);
+    rightMotor.setSpeed(currentSpeed);
+    leftMotor.setSpeed(currentSpeed);
+    rightMotor.run(RELEASE);
+    leftMotor.run(RELEASE);
 
     Serial.begin(9600);
     mySerial.begin(9600);
@@ -39,16 +39,16 @@ void loop() {
 
 void handleDirection(DirectionCode directionCode) {
     if (directionCode == DirectionCode::RIGHT) {
-        motorRight.run(BACKWARD);
-        motorLeft.run(FORWARD);
+        rightMotor.run(BACKWARD);
+        leftMotor.run(FORWARD);
     }
     else if (directionCode == DirectionCode::LEFT) {
-        motorRight.run(FORWARD);
-        motorLeft.run(BACKWARD);
+        rightMotor.run(FORWARD);
+        leftMotor.run(BACKWARD);
     }
     else {
-        motorRight.run(FORWARD);
-        motorLeft.run(FORWARD);
+        rightMotor.run(FORWARD);
+        leftMotor.run(FORWARD);
     }
 }
 
@@ -60,15 +60,15 @@ void handleSpeed(SpeedCode speedCode) {
         if (currentSpeed > minSpeed) currentSpeed -= speedGap;
     }
     else if (speedCode == SpeedCode::STOP) {
-        motorRight.setSpeed(0);
-        motorLeft.setSpeed(0);
-        motorRight.run(RELEASE);
-        motorLeft.run(RELEASE);
+        rightMotor.setSpeed(0);
+        leftMotor.setSpeed(0);
+        rightMotor.run(RELEASE);
+        leftMotor.run(RELEASE);
     }
     else {
-        motorRight.setSpeed(standardSpeed);
-        motorLeft.setSpeed(standardSpeed);
-        motorRight.run(FORWARD);
-        motorLeft.run(FORWARD);
+        rightMotor.setSpeed(standardSpeed);
+        leftMotor.setSpeed(standardSpeed);
+        rightMotor.run(FORWARD);
+        leftMotor.run(FORWARD);
     }
 }
