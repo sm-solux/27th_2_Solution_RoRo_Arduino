@@ -26,7 +26,7 @@ void Lcd::printDistance(long distance) {
 
 void Lcd::printstr(String str) {
     lcd.setCursor(0, 0);
-    lcd.printstr("                ");
+    lcd.printstr("                "); //기존 문자열 출력되어있는 경우, erase 역할
     lcd.setCursor(0, 0);
     lcd.printstr(str.c_str());
 }

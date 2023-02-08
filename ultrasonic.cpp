@@ -3,6 +3,7 @@
 
 Ultrasonic::Ultrasonic(int trig, int echo): trig(trig), echo(echo) {}
 
+//적외선 센서 핀 번호 설정
 void Ultrasonic::setup() {
     pinMode(trig, OUTPUT);
     pinMode(echo, INPUT); 

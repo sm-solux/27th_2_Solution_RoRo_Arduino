@@ -23,11 +23,15 @@ void loop() {
     frontDistance = frontUltrasonic.readDistance();
     bottomDistance = bottomUltrasonic.readDistance();
 
+    /**
+     * 정면 거리가 특정값 보다 작아지는 경우 (장애물에 가까워지면) || 바닥 거리가 특정값보다 커지는 경우 (낭떠러지 만나면)
+     * → 속도 줄이면서, 거리가 더 긴 쪽으로 우회전 혹은 좌회전 지시
+    */
     if (frontDistance < frontThresholds || bottomDistance > bottomThresholds) {
         rightDistance = rightUltrasonic.readDistance();
         leftDistance = leftUltrasonic.readDistance();
         if (rightDistance > leftDistance) {
-            mySerial.print(getOperationCode(DirectionCode::RIGHT, SpeedCode::SLOW));
+            mySerial.print(getOperationCode(DirectionCode::RIGHT, SpeedCode::SLOW)); //모터 제어 아두이노에게 동작 코드 전송
             lcd.printstr("Move to Right");
             lcd.printDistance(rightDistance);
         }
@@ -37,11 +41,12 @@ void loop() {
             lcd.printDistance(leftDistance);
         }
     }
+    //평소에는 속도 높이면서 전진 지시
     else {
         mySerial.print(getOperationCode(DirectionCode::FRONT, SpeedCode::FAST));
         lcd.printstr("Move to Front");
         lcd.printDistance(frontDistance);
     }
 
-    delay(1500);
+    delay(1500); //딜레이 주지 않으면 데이터 전송 시 값이 이상하게 변함
 }
