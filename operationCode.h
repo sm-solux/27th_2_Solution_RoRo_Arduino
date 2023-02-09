@@ -26,10 +26,10 @@ String getOperationCode(DirectionCode directionCode, SpeedCode speedCode) {
 
 //모터 제어하는 아두이노에게 전송된 동작 코드 → 방향 코드로 파싱
 DirectionCode parseDirectionCode(String operationCode) {
-    return static_cast<DirectionCode>(operationCode[0]);
+    return static_cast<DirectionCode>(operationCode.substring(0, 1).toInt());
 }
 
 //모터 제어하는 아두이노에게 전송된 동작 코드 → 속도 코드로 파싱
 SpeedCode parseSpeedCode(String operationCode) {
-    return static_cast<SpeedCode>(operationCode[1]);
+    return static_cast<SpeedCode>(operationCode.substring(1, 2).toInt());
 }

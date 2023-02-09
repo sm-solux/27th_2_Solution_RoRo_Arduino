@@ -6,7 +6,7 @@
 AF_DCMotor rightMotor(MOTOR_R), leftMotor(MOTOR_L);
 SoftwareSerial mySerial(PIN_RX, PIN_TX);
 
-const int maxSpeed = 250, minSpeed = 150, standardSpeed = 200;
+const int maxSpeed = 250, minSpeed = 150, standardSpeed = 170;
 int currentSpeed = standardSpeed, speedGap = 10;
 DirectionCode directionCode = DirectionCode::FRONT;
 SpeedCode speedCode = SpeedCode::FAST;
